@@ -106,4 +106,4 @@ jobs:
           git push origin ${{ env.LATEST_REALM }}
           gh release create ${{ env.LATEST_REALM }} ${{ env.REALM_PATH }} ${{ env.REALM_SWIFT_PATH }} -F ${{ env.RELEASE_NOTES }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
