@@ -1,3 +1,6 @@
+> Note for everyone
+> this repo is cloned from [https://github.com/Kolos65/RealmBinaries](https://github.com/Kolos65/RealmBinaries)
+
 # RealmBinaries
 
 Automated releases of [RealmSwift](https://github.com/realm/realm-swift) that publish the `XCFramework` binaries from the official [Carthage](https://github.com/Carthage/Carthage) release of the library as an [SPM](https://www.swift.org/package-manager/) package.
