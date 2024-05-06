@@ -47,20 +47,8 @@ jobs:
           mkdir /tmp/realm/RealmSwift.xcframework
 
           # Copy binaries for supported architectures from the downloaded xcframework
-          cp -r /tmp/realm/Carthage.xcframework/Realm.xcframework/ios-arm64 /tmp/realm/Realm.xcframework || exit 1
-          cp -r /tmp/realm/Carthage.xcframework/Realm.xcframework/ios-arm64_x86_64-simulator /tmp/realm/Realm.xcframework || exit 1
-          cp -r /tmp/realm/Carthage.xcframework/RealmSwift.xcframework/ios-arm64 /tmp/realm/RealmSwift.xcframework || exit 1
-          cp -r /tmp/realm/Carthage.xcframework/RealmSwift.xcframework/ios-arm64_x86_64-simulator /tmp/realm/RealmSwift.xcframework || exit 1
-
-          # Copy Info.plist files for the frameworks and remove unsupported architectures
-          cp /tmp/realm/Carthage.xcframework/Realm.xcframework/Info.plist /tmp/realm/Info-Realm.plist || exit 1
-          cp /tmp/realm/Carthage.xcframework/RealmSwift.xcframework/Info.plist /tmp/realm/Info-RealmSwift.plist || exit 1
-          plutil -convert json -o /tmp/realm/Info-Realm.json /tmp/realm/Info-Realm.plist
-          plutil -convert json -o /tmp/realm/Info-RealmSwift.json /tmp/realm/Info-RealmSwift.plist
-          jq '.AvailableLibraries |= map(select(.LibraryIdentifier=="ios-arm64" or .LibraryIdentifier=="ios-arm64_x86_64-simulator"))' /tmp/realm/Info-Realm.json > /tmp/realm/Info-Realm-Filtered.json
-          jq '.AvailableLibraries |= map(select(.LibraryIdentifier=="ios-arm64" or .LibraryIdentifier=="ios-arm64_x86_64-simulator"))' /tmp/realm/Info-RealmSwift.json > /tmp/realm/Info-RealmSwift-Filtered.json
-          plutil -convert xml1 -o /tmp/realm/Realm.xcframework/Info.plist /tmp/realm/Info-Realm-Filtered.json
-          plutil -convert xml1 -o /tmp/realm/RealmSwift.xcframework/Info.plist /tmp/realm/Info-RealmSwift-Filtered.json
+          cp -r /tmp/realm/Carthage.xcframework/Realm.xcframework/* /tmp/realm/Realm.xcframework || exit 1
+          cp -r /tmp/realm/Carthage.xcframework/RealmSwift.xcframework/* /tmp/realm/RealmSwift.xcframework || exit 1
 
           # Create our final zip files for the xcframeworks
           cd /tmp/realm
